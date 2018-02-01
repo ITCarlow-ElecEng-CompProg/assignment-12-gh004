@@ -1,152 +1,115 @@
-/** Gearoid Hanrahan
-    Lab 12
-    Complex Number Calculations
-/** Preprocessor directives*/
+//  Gearoid Hanrahan
+//  Lab 12
+//  Real to Imaginary
+
 #include <iostream>
-#include <iomanip>
-#include <cstdio>
-#include <windows.h>
-#include <math.h>
+    //Defining Structures
+    struct complexnumb
+{
+    float real;
+    float imag;
+};
+    complexnumb add(complexnumb struct1, complexnumb struct2);
+    complexnumb subtract(complexnumb struct1, complexnumb struct2);
+    complexnumb multiply(complexnumb struct1, complexnumb struct2);
+    complexnumb divide(complexnumb struct1, complexnumb struct2);
+
 
 using namespace std;
 
-//cartisian number */
-struct number
+int main()
 {
-    double real, imag;
-};
+    cout << "Complex Calculations" << endl;
 
-struct polarnumber
-{
-    double mag, angle;
-};
+    struct complexnumb complexentry1, complexentry2, sum, sub, mul, div;
 
-//* Main function
-int main (void)
-{
-    cout << "Addition, Subtraction, Multiplication & Division of Complex Numbers."  ;
+    cout<<"Enter number for a real value:"<<endl;
+    cin>>complexentry1.real;
 
-    struct number one, two;
+    cout<<"Enter number for imaginary value:"<<endl;
+    cin>>complexentry1.imag;
 
-    // Reading in Imaginary and variable numbers
-    cout << "\n\nReal 1 :\t" ;
-    cin >> one.real ;
-    cout << "Imaginary 1 :\t" ;
-    cin >> one.imag ;
+     cout<<"Enter another number for a real value:"<<endl;
+    cin>>complexentry2.real;
 
-    cout << "\n\nReal 2 :\t" ;
-    cin >> two.real ;
-    cout << "Imaginary 2 :\t" ;
-    cin >> two.imag ;
+    cout<<"Enter another number for imaginary value:"<<endl;
+    cin>>complexentry2.imag;
 
-    struct number sum, subtract, multiplication, division;
+    sum=add(complexentry1,complexentry2);
+    sum=subtract(complexentry1,complexentry2);
+    sum=multiply(complexentry1,complexentry2);
+    sum=divide(complexentry1,complexentry2);
 
-    struct number add (struct number, struct number);
-    struct number sub (struct number, struct number);
-    struct number mul (struct number, struct number);
-    struct number div (struct number, struct number);
+           //Displays the results to the ur=ser
+        cout << "The sum of "<<complexentry1.real<< "+" << complexentry1.imag<< "j"<< " + "<<complexentry2.real<< "+" <<complexentry2.imag<< "j"<<
+        " = " << sum.real << "+" << sum.imag << "j" << endl;
 
-    sum = add (one, two);
-    subtract = sub (one, two);
-    multiplication = mul (one, two);
-    division = div(one,two);
+        cout << "The sum of "<<complexentry1.real<< "+" << complexentry1.imag<< "j"<< " - "<<complexentry2.real<< "+" <<complexentry2.imag<< "j"<<
+        " = " << sub.real << "+" << sub.imag << "j" << endl;
 
-    if (sum.imag >= 0)
-    cout << "\n\nAddition = " << sum.real << " + j" << sum.imag << endl;
-    else
-    cout << "\n\nAddition = " << sum.real << " - j" << fabs(sum.imag) << endl;
+        cout << "The sum of "<<complexentry1.real<< "+" <<complexentry1.imag<< "j"<< " x "<<complexentry2.real<< "+" <<complexentry2.imag<< "j"<<
+        " = " << mul.real << "+" << mul.imag << "j" << endl;
 
-    if (subtract.imag >= 0)
-    cout << "\n\nSubtraction = " << subtract.real << " + j" << subtract.imag << endl;
-    else
-    cout << "\n\nSubtraction = " << subtract.real << " - j" << fabs(subtract.imag) << endl;
+        cout << "The sum of "<<complexentry1.real<< "+" <<complexentry1.imag<< "j"<< " / "<<complexentry2.real<< "+" <<complexentry2.imag<< "j"<<
+        " = " << div.real << "+" << div.imag << "j" << endl;
 
-    if (multiplication.imag >= 0)
-    cout << "\n\nMultiplication = " << multiplication.real << " + j" << multiplication.imag << endl;
-    else
-    cout << "\n\nMultiplication = " << multiplication.real << " - j" << fabs(multiplication.imag) << endl;
 
-    if (division.imag >= 0)
-    cout << "\n\nDivision = " << division.real << " + j" << division.imag << endl;
-    else
-    cout << "\n\nDivision = " << division.real << " - j" << fabs(division.imag) << endl;
-
-    // Terminating main function
     return 0;
-
 }
 
-// Addition subfunction
-struct number add (struct number n1, struct number n2)
+//Function to add complex numbers
+complexnumb add(complexnumb struct1, complexnumb struct2)
 {
-    struct number res;
 
-    res.real = n1.real + n2.real;
-    res.imag = n1.imag + n2.imag;
+    struct complexnumb Sum;
 
-    return res;
+
+    Sum.real = struct1.real + struct2.real;
+
+    Sum.imag = struct1.imag + struct2.imag;
+
+    return Sum;
 }
 
-//* Addition subfunction
-struct number sub (struct number n1, struct number n2)
+//Function to subtract complex numbers
+complexnumb subtract(complexnumb struct1, complexnumb struct2)
 {
-    //* showing res as a variable
-    struct number res;
 
-    res.real = n1.real - n2.real;
-    res.imag = n1.imag - n2.imag;
+    struct complexnumb Sub;
 
-    return res;
+    Sub.real = struct1.real - struct2.real;
+    Sub.imag = struct1.imag - struct2.imag;
+
+    return Sub;
 }
 
-struct number mul (struct number n1, struct number n2)
+//Function to multiply complex numbers
+complexnumb multiply(complexnumb struct1, complexnumb struct2)
 {
-    struct number res;
-    struct polarnumber n1P, n2P, resP;
 
-    //* convert from cart to polar */
-    n1P.mag = sqrt(pow(n1.real, 2) + pow(n1.imag, 2));
-    n1P.angle = atan2(n1.imag, n1.real);
+    struct complexnumb Mul;
 
-    n2P.mag = sqrt(pow(n2.real, 2) + pow(n2.imag, 2));
-    n2P.angle = atan2(n2.imag, n2.real);
 
-    resP.mag = n1P.mag * n2P.mag;
-    resP.angle = n1P.angle + n2P.angle;
+    Mul.real = struct1.real*struct2.real - struct1.imag*struct2.imag;
+    Mul.imag = struct1.imag*struct2.real + struct1.real*struct2.imag;
 
-    //* convert polar to cartisian
-    res.real = resP.mag * cos(resP.angle);
-    res.imag = resP.mag * sin(resP.angle);
-
-    //* return resutl to main function */
-    return res;
+    return Mul;
 }
 
-struct number div (struct number n1, struct number n2)
+//Function to divide complex numbers
+complexnumb divide(complexnumb struct1, complexnumb struct2)
 {
-    struct number res;
-    struct polarnumber n1P, n2P, resP;
 
-    //* convert from cart to polar
-    n1P.mag = sqrt(pow(n1.real, 2) + pow(n1.imag, 2));
-    n1P.angle = atan2(n1.imag, n1.real);
+    struct complexnumb Div;
 
-    //* convert from cart to polar
-    n2P.mag = sqrt(pow(n2.real, 2) + pow(n2.imag, 2));
-    n2P.angle = atan2(n2.imag, n2.real);
+    float denominator;
 
-    //* divide together
-    resP.mag = n1P.mag / n2P.mag;
-    resP.angle = n1P.angle - n2P.angle;
 
-    //* convert polar to cartisian and return value */
-    res.real = resP.mag * cos(resP.angle);
-    res.imag = resP.mag * sin(resP.angle);
+    Div.real = struct1.real*struct2.real + struct1.imag*struct2.imag;
+    Div.imag = struct1.imag*struct2.real - struct1.real*struct2.imag;
+    denominator = struct2.real*struct2.real + struct2.imag*struct2.imag;
+    Div.real = Div.real/denominator;
+    Div.imag = Div.imag/denominator;
 
-    //res.real = n1.real / n2.real;
-    //res.imag = n1.imag / n2.imag;
-
-    /** return result to main function */
-    return res;
+    return Div;
 }
-
